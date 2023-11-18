@@ -1,4 +1,4 @@
-# COMP-7607-FinalProject, based on Tk-Instruct
+# COMP-7607-FinalProject based on Tk-Instruct
 
 ## Motivation
 - At the time of the reference paper’s release in April 2022, there were yet any sizable 
@@ -94,7 +94,7 @@ We refer [Exploring Format Consistency for Instruction Tuning](https://arxiv.org
 
 The prompt that tk-instruct use in definition-only is:
 
-```json
+```txt
 Definition : {{definition}}
 
 Now complete the following example−
@@ -112,7 +112,7 @@ and an example from alpaca is:
 ```
 
 so the training examples from alpaca would look like:
-```json
+```txt
 Definition : Give three tips for staying healthy.
 
 Now complete the following example−
@@ -121,7 +121,7 @@ output :
 ```
 
 and the target is:
-```json
+```txt
 1.Eat a balanced diet and make sure to include plenty of fruits and vegetables. \n2. Exercise regularly to keep your body active and strong. \n3. Get enough sleep and maintain a consistent sleep schedule.
 ```
 
