@@ -178,7 +178,71 @@ The performance difference between the two models is attributed to the inclusion
 
 
 
-## Citation
+### Detailed Analysis
+Detailed analysis from Yutong, which can be used in final report:
+
+- In task 102, definition is asking model to give concept set (with 3 to 5 concepts) that contain mentions of names of people, places, activities, or things. These concept sets reflect reasonable concept co-occurrences in everyday situations. All concepts given as input are separated by \"#\". Your job is to generate a sentence describing a day-to-day scene using all concepts from a given concept set.
+
+- In this task, models trained on Super-Natural Datasets and Alpaca Datasets outperform model only trained on Super-Natural Datasets. There are several instances proving that. 
+For Model only trained on super datasets, it tends to merely combine the concepts with some prepositions and unnecessary nouns. It falls short in accurately depicting scenes and illustrating logical relationships.
+For example, 
+“Input: skier#slope#way”
+“Output: skier on the slopes way”
+In output, model effectively communicates that the skier is on the slopes but fails to provide additional context about what skier is doing and why skier is here. In other words, model did not depict the scene properly.
+Another example, 
+“Input:book#shelf#stand”
+“Output: books stand on a shelf”
+In output, model merely combines words together without emphasizing logical relationship between them. In everyday language  the phrase ”book shelf” is more commonly used than the separate entities “book” and “shelf”. In other words, we tend to express what happens to a book shelf not to a book.
+
+- Another case also tells the same thing,
+“Input: beach#collect#shell”
+“Output: beach collecting shells”
+It is evident that “beach” can not do anything subjectively so it can not collect shells. The model fails to apply correct logic in this instance. In fact, individuals or animals on beach perform activities. In other words, model only combine words meaninglessly.
+
+- But for model trained on super-natural datasets and alpaca datasets,  it outputs more reasonable answers. 
+“Input: skier#slope#way”
+"Output: skier skis down the slope.",
+In this output, model correctly depicts the common scenario where skiers is skiing down the slope. In other words, skier should ski on a slope based on common sense. In this output, we can understand what skier is doing and why skier is here, indicating that this model outperforms previous one.
+
+- “Input:book#shelf#stand”
+"Output: book shelf stands on a table."
+- In this output, model correctly use the phrase “book shelf” and depict the scenario where book shelf stands on a table. In other words, it describe more about book shelf, which gives reader a clear vision about what happen.
+“Input: beach#collect#shell”
+“Output: beach goers collect shells.”
+In this answer, model did not choose beach as subject but select another concept ”beach goers”, which is more reasonable. In scenarios related to the beach, it's more plausible for individuals to envision "beach goers" as the subject of interest. As a result, this output is more common in day-to-day life.
+
+As for reason why alpaca datasets make models more powerful, we can view the super-natural datasets first. 
+
+- For task102, most instances only combine words without further descriptions.
+For example, 
+“Input: eat#hay#horse”
+“Output: A horse is eating hay.”
+Although output is correct, this instance did not contain enough information for this scene like what kind of horse it is, why it is eating hay, how it is eating, where it is eating and so on. If model is given too much instances like this, it might give output by only using different sequence of words other than understand its meaning. So it might gives not good or bad answer.
+Another example in super datasets is like that:
+"Input: fan#match#watch",
+"Output: watch a match with fans",
+
+- It is easy to find that there is not enough information in output so model might learns wrong principle of instances.
+
+But using alpaca datasets could help avoid this problem.
+For one instruction,
+“Instruction: Generate a creative birthday wish for a friend.”
+“Input:”
+“Output: Happy birthday! May this special day bring you joy, laughter, and all the blessings you deserve. Have a wonderful year ahead!"
+In this QA, model is also required to generate sentences for a common scene. This output expand the instruction into three sentences. It successfully depict a scene that speaker is hosting a birthday party for a friend for the purpose of wishing a new year with joy and laughter. It also contains what people mostly think about :  a creative birthday should make people with joy and laughter not only just have a birthday. 
+- As a result, for model trained on super datasets, it might only output “Hope you have a creative birthday”. But for model trained on super+alpaca datasets, it is more likely to output more about the birthday.
+
+That’s why the difference stands out. In alpaca datasets, more common sense is inserted into datasets so model trained on that have better performance.  In other words, output of instances in alpaca datasets tends to illustrate more details only human knows.
+
+- Going back to three instances talked before, it is easy to find that model trained on super+alpaca datasets tends to express more related to common sense. For example, from human’s point of view, skier is more likely to ski. Book and Shelf are bunched together. Beach can not be regarded as a subject to act. Common sense from human help model generate sentences correctly.
+
+
+
+ 
+
+
+
+## Related Work
 
 ```bib
 @inproceedings{supernaturalinstructions,
