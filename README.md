@@ -137,8 +137,41 @@ The results are as follows:
 | super+heuristic(alpaca)       | 28.67 | 47.9    |
 | super+heuristic(promptsource) | 33.02 | 49.78   |
 
-### Analysis
-1. TODO
+Task performance difference between super(reproduce) and super+heuristic(alpaca):
+
+<br>
+<div align="center">
+<img src="assets/task_dif.jpg" width="800px">
+</div>
+<br>
+
+### In-depth Analysis on Super+heuristic(alpaca) Model
+- Common sense reasoning:
+
+In Task 102, the objective is to generate a sentence describing a day-to-day scene using all concepts from a given concept set. The concepts are provided in sets of three to five, separated by "#". This task assesses the ability of models to create coherent and logical sentences from a set of unrelated concepts.
+
+#### Comparison of Models
+Models are trained on two types of datasets: Super-Natural Datasets and Alpaca Datasets. The analysis shows that models trained on both datasets outperform those trained solely on Super-Natural Datasets.
+
+#### Instances Analysis
+
+| Task Name | Task Definition & Task Input | Model | Prediction |
+|-----------|------------------------------|-------|------------|
+| Skier Scenario | Input: skier#slope#way | Super-Natural Dataset Model | Output: skier on the slopes way |
+| Book and Shelf Scenario | Input: book#shelf#stand | Super-Natural Dataset Model | Output: books stand on a shelf |
+| Beach Scenario | Input: beach#collect#shell | Super-Natural Dataset Model | Output: beach collecting shells |
+| Skier Scenario Enhanced | Input: skier#slope#way | Super+Alpaca Dataset Model | Output: skier skis down the slope |
+| Book and Shelf Scenario Enhanced | Input: book#shelf#stand | Super+Alpaca Dataset Model | Output: book shelf stands on a table |
+| Beach Scenario Enhanced | Input: beach#collect#shell | Super+Alpaca Dataset Model | Output: beach goers collect shells |
+
+- Models trained only on Super-Natural Datasets tend to create sentences by merely combining the given concepts without depicting the scene accurately or establishing logical relationships.
+- In contrast, models trained on both Super-Natural and Alpaca Datasets generate more realistic and contextually appropriate sentences, demonstrating a better understanding of everyday scenarios and logical relationships between concepts.
+
+#### Conclusion
+The performance difference between the two models is attributed to the inclusion of Alpaca Datasets, which provide more context and common sense to the training process. Models trained on both datasets are better at applying human-like common sense and detailed understanding to the task, resulting in more realistic and coherent sentences.
+
+- Halucination problems:
+
 
 
 *Below is the original readme in TK-instruct.*
